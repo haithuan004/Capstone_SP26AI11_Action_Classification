@@ -1,7 +1,30 @@
+# ── Virtual environments ──────────────────────────────────────────────────────
 Capstone/
 venv/
 env/
+
+# ── Python cache ──────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc
+*.pyo
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
 .vscode/
+
+# ── WandB logs ────────────────────────────────────────────────────────────────
 wandb/
+
+# ── Large model weights (lưu riêng, không commit) ────────────────────────────
+*.pth
+checkpoints_v4/
+
+# ── Intermediate pipeline output (có thể tái tạo) ────────────────────────────
+_test_enhanced/
+
+# ── Log files ─────────────────────────────────────────────────────────────────
+*.log
+train_log*.txt
+
+# ── NumPy data arrays (lớn, không commit — backup riêng) ─────────────────────
+stgcn_augmented/
+stgcn_split_all/
