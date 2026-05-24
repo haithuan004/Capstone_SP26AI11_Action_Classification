@@ -12,10 +12,16 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from stgcn_model import (
-    NUM_JOINTS, CENTER_JOINT,
-    build_adjacency_matrix, build_spatial_partition, normalize_adjacency
-)
+try:
+    from Models.stgcn_model import (
+        NUM_JOINTS, CENTER_JOINT,
+        build_adjacency_matrix, build_spatial_partition, normalize_adjacency
+    )
+except ImportError:
+    from stgcn_model import (
+        NUM_JOINTS, CENTER_JOINT,
+        build_adjacency_matrix, build_spatial_partition, normalize_adjacency
+    )
 
 
 class SparseGraphConv(nn.Module):

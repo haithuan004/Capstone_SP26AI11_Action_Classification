@@ -21,8 +21,8 @@ from pathlib import Path
 from collections import Counter
 
 warnings.filterwarnings("ignore")
-sys.path.insert(0, str(Path(__file__).parent))
-from sgcn_model import SGCN
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from Models.sgcn_model import SGCN
 
 # ─── paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR   = Path(r"d:\Capstone2026\Action Predict\Labeled_data")

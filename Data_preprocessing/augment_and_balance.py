@@ -28,10 +28,10 @@ from collections import Counter
 # ──────────────────────────────────────────────────────
 # CONFIG
 # ──────────────────────────────────────────────────────
-DATA_DIR   = Path(r"d:\Capstone2026\Action Predict\Labeled_data\stgcn_split_all")
-OUT_DIR    = Path(r"d:\Capstone2026\Action Predict\Labeled_data\stgcn_augmented")
+DATA_DIR   = Path(r"d:\Capstone2026\Action Predict\Labeled_data\new_data_split")
+OUT_DIR    = Path(r"d:\Capstone2026\Action Predict\Labeled_data\offline_augment_data")
 
-TARGET_PER_CLASS = 45    # Mục tiêu số track mỗi class sau augmentation
+TARGET_PER_CLASS = 100    # Mục tiêu số track mỗi class sau augmentation
 SEED             = 42
 MAX_FRAME        = 300
 

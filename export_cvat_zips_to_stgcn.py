@@ -122,7 +122,11 @@ def skeleton_to_xy_conf(sk: ET.Element) -> np.ndarray:
         if xy is None or outside:
             out[idx] = [0.0, 0.0, 0.0]
         else:
-            out[idx] = [xy[0], xy[1], 1.0]
+            # Lọc bỏ các điểm bị văng ra quá xa do lỗi pipeline/annotation (ví dụ: >3000px)
+            if xy[0] < -1000 or xy[0] > 4000 or xy[1] < -1000 or xy[1] > 4000:
+                out[idx] = [0.0, 0.0, 0.0]
+            else:
+                out[idx] = [xy[0], xy[1], 1.0]
     return out
 
 
@@ -220,7 +224,7 @@ def normalize_sequence_inplace(data: np.ndarray) -> None:
             sm = (xy[:, ls] + xy[:, rs]) * 0.5
             hm = (xy[:, lh] + xy[:, rh]) * 0.5
             torso = float(np.linalg.norm(sm - hm))
-        scale = max(shoulder_w, hip_w, torso, 1e-3)
+        scale = max(shoulder_w, hip_w, torso, 50.0)
 
         if conf[lh] > 0 and conf[rh] > 0:
             c = (xy[:, lh] + xy[:, rh]) * 0.5

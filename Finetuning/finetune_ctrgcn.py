@@ -45,7 +45,7 @@ from Models.ctrgcn_model import CTRGCN
 
 # ─── Paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR  = Path(r"d:\Capstone2026\Action Predict\Labeled_data")
-DATA_DIR  = BASE_DIR / "stgcn_augmented"
+DATA_DIR   = BASE_DIR / "offline_augment_data"
 SAVE_DIR  = BASE_DIR / "checkpoints_v4"
 
 CLASS_NAMES = ["standing", "walking", "sitting", "falling"]
@@ -288,7 +288,7 @@ def train_epoch(model, loader, criterion, optimizer, device, ema=None, alpha=0.3
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--clip-len",      type=int,   default=100)
-    p.add_argument("--stride",        type=int,   default=10)
+    p.add_argument("--stride",        type=int,   default=30)
     p.add_argument("--epochs",        type=int,   default=250)
     p.add_argument("--batch-size",    type=int,   default=32)
     p.add_argument("--lr",            type=float, default=3e-4)
@@ -359,7 +359,7 @@ def main():
     print(f"[Model] CTR-GCN (boost)  |  params: {n_params:,}")
 
     # Loss & Optimizer (AdamW)
-    cw        = class_weights(tr_wlabs, args.num_classes, boost_falling=3.0).to(device)
+    cw        = class_weights(tr_wlabs, args.num_classes).to(device)
     criterion = FocalLoss(weight=cw, gamma=2.0, ls=0.15)
 
     backbone_params = [p for n, p in model.named_parameters() if "fc." not in n]

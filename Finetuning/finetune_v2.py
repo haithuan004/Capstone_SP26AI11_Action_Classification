@@ -21,12 +21,12 @@ from pathlib import Path
 from collections import Counter
 
 warnings.filterwarnings("ignore")
-sys.path.insert(0, str(Path(__file__).parent))
-from stgcn_model import STGCN, load_pretrained_backbone
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from Models.stgcn_model import STGCN, load_pretrained_backbone
 
 # ─── paths ─────────────────────────────────────────────────────────────────────
 BASE_DIR   = Path(r"d:\Capstone2026\Action Predict\Labeled_data")
-DATA_DIR   = BASE_DIR / "stgcn_augmented"
+DATA_DIR   = BASE_DIR / "offline_augment_data"
 PRETRAINED = BASE_DIR / "stgcn_8xb16-bone-u100-80e_ntu60-xsub-keypoint-2d_20221129-c4b44488.pth"
 SAVE_DIR   = BASE_DIR / "checkpoints_v4"
 
@@ -164,7 +164,7 @@ def train_epoch(model, loader, criterion, optimizer, device, alpha=0.2, clip_nor
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--clip-len",     type=int,   default=100)
-    p.add_argument("--stride",       type=int,   default=15)
+    p.add_argument("--stride",       type=int,   default=8)
     p.add_argument("--epochs",       type=int,   default=150)
     p.add_argument("--batch-size",   type=int,   default=32)
     p.add_argument("--lr",           type=float, default=1e-4)
