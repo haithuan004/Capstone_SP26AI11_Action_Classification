@@ -19,7 +19,7 @@ rects2 = ax.bar(x, r_vals, width, label='Recall', color='#e74c3c')
 rects3 = ax.bar(x + width, f1_vals, width, label='F1-Score', color='#2ecc71')
 
 ax.set_ylabel('Scores')
-ax.set_title('Performance Metrics per Class (ST-GCN Fold 0)')
+ax.set_title('Performance Metrics per Class')
 ax.set_xticks(x)
 ax.set_xticklabels([c.capitalize() for c in classes])
 ax.legend(loc='upper right', bbox_to_anchor=(1.15, 1))
